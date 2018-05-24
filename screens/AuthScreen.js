@@ -6,20 +6,28 @@ import { facebookLogin } from '../actions';
 class AuthScreen extends Component {
   componentDidMount() {
     this.props.facebookLogin();
-    AsyncStorage.removeItem('fb_token'); // For testing
+    this.onAuthComplete(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.onAuthComplete(nextProps);
+  }
+
+  onAuthComplete(props) {
+    if (props.token) {
+      this.props.navigation.navigate('map');
+    }
   }
 
   render() {
     return (
-      <View>
-        <Text>AuthScreen</Text>
-        <Text>AuthScreen</Text>
-        <Text>AuthScreen</Text>
-        <Text>AuthScreen</Text>
-        <Text>AuthScreen</Text>
-      </View>
+      <View/>
     );
   }
 }
 
-export default connect(null, { facebookLogin })(AuthScreen);
+function mapStateToProps({ auth }) {
+  return { token: auth.token };
+}
+
+export default connect(mapStateToProps, { facebookLogin })(AuthScreen);
