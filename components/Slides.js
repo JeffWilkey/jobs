@@ -60,7 +60,7 @@ const styles = {
     paddingRight: 20
   },
   buttonStyle: {
-    backgroundColor: '#0288D1',
+    backgroundColor: '#ff7043',
     marginTop: 15
   }
 };
