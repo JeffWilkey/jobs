@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import Slides from '../components/Slides';
 
 const SLIDE_DATA = [
