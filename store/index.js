@@ -12,7 +12,9 @@ const store = createStore(
     autoRehydrate()
   )
 );
-
+// Append .purge() to persistStore() to remove persisted data
+// or clear likedJobs from App in Settings
+// dangerous in production
 persistStore(store, { storage: AsyncStorage, whitelist: ['likedJobs'] });
 
 export default store;
