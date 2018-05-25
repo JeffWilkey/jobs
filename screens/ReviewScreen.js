@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { ScrollView, View, Text, Image, Linking } from 'react-native';
-import { Button, Card } from 'react-native-elements';
+import { Button, Card, Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 class ReviewScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    headerTitle: 'Review Jobs',
+    title: 'Review Jobs',
     headerRight: (
       <Button
         title="Settings"

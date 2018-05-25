@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
+import { Icon } from 'react-native-elements';
 
 import store from './store';
 import AuthScreen from './screens/AuthScreen';
@@ -20,11 +21,20 @@ export default class App extends React.Component {
         screen: createBottomTabNavigator({
           map: { screen: MapScreen },
           deck: { screen: DeckScreen },
-          review: {
+          Review: {
             screen: createStackNavigator({
               review: { screen: ReviewScreen },
               settings: { screen: SettingsScreen }
             })
+          }
+        }, {
+          navigationOptions: {
+            tabBarIcon: ({ tintColor }) => (
+              <Icon name="favorite-border" size={30} color={tintColor} />
+            )
+          },
+          tabBarOptions: {
+            labelStyle: { fontSize: 12 }
           }
         })
       }

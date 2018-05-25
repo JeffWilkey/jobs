@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { SafeAreaView, View, Text, Linking, Image } from 'react-native';
 import { connect } from 'react-redux';
-import { Card, Button } from 'react-native-elements';
+import { Card, Button, Icon } from 'react-native-elements';
 import Swipe from '../components/Swipe';
 import { likeJob } from '../actions';
 
 class DeckScreen extends Component {
-
+  static navigationOptions = {
+    title: 'Jobs',
+    tabBarIcon: ({ tintColor }) => (
+      <Icon name="move-to-inbox" size={30} color={tintColor} />
+    )
+  }
   renderCard(item) {
     return (
       <Card
@@ -35,8 +40,10 @@ class DeckScreen extends Component {
           There's no more jobs in this area!
         </Text>
         <Button
+          large
+          title="Search Another Area"
           backgroundColor="#03a9f4"
-          title="Search another area!"
+          icon={{ name: 'edit-location' }}
           onPress={() => navigate('map')}
         />
       </Card>
