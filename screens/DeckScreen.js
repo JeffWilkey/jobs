@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { SafeAreaView, Text, Linking } from 'react-native';
+import { SafeAreaView, View, Text, Linking, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Card, Button } from 'react-native-elements';
 import Swipe from '../components/Swipe';
+import { likeJob } from '../actions';
 
 class DeckScreen extends Component {
 
@@ -10,9 +11,10 @@ class DeckScreen extends Component {
     return (
       <Card
         key={item.id}
-        image={{ uri: item.company_logo }}
-        containerStyle={{ height: 305 }}
       >
+        <View>
+          <Image source={{ uri: item.company_logo }} style={styles.companyLogo} />
+        </View>
         <Text style={styles.textStyle}>{item.title}</Text>
         <Text style={styles.companyStyle}>{item.company} - {item.location}</Text>
         <Button
@@ -48,6 +50,7 @@ class DeckScreen extends Component {
           data={this.props.jobs}
           renderCard={this.renderCard}
           renderNoMoreCards={this.renderNoMoreCards}
+          onSwipeRight={job => this.props.likeJob(job)}
           navigation={navigation}
         />
       </SafeAreaView>
@@ -69,6 +72,11 @@ const styles = {
     fontSize: 15,
     color: '#666',
     marginBottom: 30
+  },
+  companyLogo: {
+    height: 300,
+    alignSelf: 'stretch',
+    flex: 1
   }
 };
 
@@ -76,4 +84,4 @@ function mapStateToProps({ jobs }) {
   return { jobs: jobs.results };
 }
 
-export default connect(mapStateToProps)(DeckScreen);
+export default connect(mapStateToProps, { likeJob })(DeckScreen);
