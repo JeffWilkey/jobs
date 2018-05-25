@@ -20,10 +20,8 @@ class ReviewScreen extends Component {
     return this.props.likedJobs.map(job => {
       const { id, title, company, company_logo, location, url } = job;
       return (
-        <Card
-          key={id}
-        >
-          <View >
+        <Card key={id}>
+          <View>
             <View style={{ flex: 2 }}>
               <Image source={{ uri: company_logo }} style={styles.companyLogo} />
             </View>
