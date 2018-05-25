@@ -14,7 +14,7 @@ const store = createStore(
 );
 // Append .purge() to persistStore() to remove persisted data
 // or clear likedJobs from App in Settings
-// dangerous in production
+// dangerous in production without redux-persist-migrate
 persistStore(store, { storage: AsyncStorage, whitelist: ['likedJobs'] });
 
 export default store;
