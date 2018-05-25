@@ -4,7 +4,7 @@ import { Button } from 'react-native-elements';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
 
-import { fetchJobs } from "../actions";
+import { fetchJobs } from '../actions';
 
 class MapScreen extends Component {
   state = {
@@ -20,20 +20,22 @@ class MapScreen extends Component {
   componentDidMount() {
     this.setState({ mapLoaded: true });
   }
-  
+
   onRegionChangeComplete = (region) => {
     this.setState({ region });
   }
 
   onButtonPress = () => {
-    this.props.fetchJobs(this.state.region);
+    this.props.fetchJobs(this.state.region, () => {
+      this.props.navigation.navigate('deck');
+    });
   }
 
   render() {
     if (!this.state.mapLoaded) {
       return (
         <View style={{ flex: 1, justifyContent: 'center' }}>
-          <ActivityIndicator size="large"/>
+          <ActivityIndicator size="large" />
         </View>
       );
     }

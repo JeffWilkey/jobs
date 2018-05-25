@@ -16,12 +16,13 @@ const buildJobsUrl = (lat, long) => {
   return `${JOB_ROOT_URL}${query}`;
 };
 
-export const fetchJobs = ({ latitude, longitude }) => async dispatch => {
+export const fetchJobs = ({ latitude, longitude }, callback) => async dispatch => {
   try {
     const url = buildJobsUrl(latitude, longitude);
-    let { data } = await axios.get(url);
+    const { data } = await axios.get(url);
     dispatch({ type: FETCH_JOBS, payload: data });
-  } catch(err) {
+    callback();
+  } catch (err) {
     console.error(err);
   }
 };
