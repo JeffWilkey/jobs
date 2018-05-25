@@ -1,6 +1,6 @@
 import {
   FETCH_JOBS
-} from "../actions/types";
+} from '../actions/types';
 
 const INITIAL_STATE = {
   results: []
@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case FETCH_JOBS:
-      return action.payload;
+      return { ...state, results: action.payload };
     default:
       return state;
   }
