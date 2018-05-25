@@ -11,8 +11,9 @@ class DeckScreen extends Component {
     return (
       <Card
         key={item.id}
+        containerStyle={styles.container}
       >
-        <View>
+        <View style={{ height: 300 }}>
           <Image source={{ uri: item.company_logo }} style={styles.companyLogo} />
         </View>
         <Text style={styles.textStyle}>{item.title}</Text>
@@ -60,7 +61,7 @@ class DeckScreen extends Component {
 
 const styles = {
   container: {
-    flex: 1,
+    height: 475,
     backgroundColor: '#fff'
   },
   textStyle: {
@@ -74,9 +75,8 @@ const styles = {
     marginBottom: 30
   },
   companyLogo: {
-    height: 300,
-    alignSelf: 'stretch',
-    flex: 1
+    flex: 1,
+    marginBottom: 10
   }
 };
 
